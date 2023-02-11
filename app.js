@@ -3,8 +3,8 @@ const path = require('path');
 const express = require('express');
 
 const db = require('./data/database');
-const authRoutes = require('./routes/auth');
-const productRoutes = require('./routes/product');
+const authRoutes = require('./routes/auth-routes');
+const productRoutes = require('./routes/product-routes');
 
 const app = express();
 

@@ -1,15 +1,24 @@
-const index = (req, res) => {
-    res.render('index');
+const User = require('../models/user');
+const bcrypt = require('bcryptjs');
+
+const getSignup = (req, res) => {
+    res.render('auth/signup');
 }
 
-const login = (req, res) => {
-    res.render('login');
-}
+const insertUser = async (req, res) => {
+    const insertData = req.body;
+    const name = insertData.name;
+    const email = insertData.email;
+    const password = await bcrypt.hash(insertData.password, 12);
+    const address = insertData.address;
+    const isAdmin = false;
 
-const signup = (req, res) => {
-    res.render('signup');
+    const user = new User(null, name, email, password, address, isAdmin)
+    const result = await user.save();
+    console.log(result);
+    res.redirect('/signup');
 }
 
 module.exports = {
-    index, login, signup
+    getSignup, insertUser
 }

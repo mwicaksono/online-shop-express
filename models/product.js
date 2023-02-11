@@ -12,6 +12,7 @@ class Product {
         const products = await db.getDb().collection('products').find().toArray();
         return products;
     }
+
 }
 
 module.exports = Product; 
