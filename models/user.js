@@ -1,13 +1,18 @@
-const db = require('../data/database');
 const mongodb = require('mongodb');
+const bcrypt = require('bcryptjs');
+const db = require('../data/database');
 const ObjectId = mongodb.ObjectId;
 
 class User {
-    constructor(id, name, email, password, address, isAdmin) {
+    constructor(id, name, email, password, street, postalCode, city, isAdmin) {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.address = address;
+        this.address = {
+            street,
+            postalCode,
+            city
+        };
         this.isAdmin = isAdmin;
         if (this.id) {
             this.id = ObjectId(id);
@@ -15,10 +20,12 @@ class User {
     }
 
     async save() {
+        const hashedPassword = await bcrypt.hash(this.password, 12);
+
         const result = await db.getDb().collection('users').insertOne({
-            name: this.name,
             email: this.email,
-            password: this.password,
+            password: hashedPassword,
+            name: this.name,
             address: this.address,
             isAdmin: this.isAdmin
         });
