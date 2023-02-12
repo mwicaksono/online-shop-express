@@ -1,14 +1,14 @@
-<%- include('../partials/head', { title: 'Sign Up Page' }) %>
+<%- include('../../shared/partials/head', { title: 'Sign Up Page' }) %>
     <link rel="stylesheet" href="/styles/forms.css">
     <link rel="stylesheet" href="/styles/auth.css">
     </head>
 
     <body>
-        <%- include('../partials/header') %>
+        <%- include('../../shared/partials/header') %>
             <main>
                 <h1>Create New Account</h1>
                 <form action="/signup" method="POST">
-
+                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
                     <p>
                         <label for="email">Email</label>
                         <input type="email" placeholder="enter email here" name="email" id="email" required>
@@ -44,7 +44,7 @@
                     <p id="switch-form"><a href="/login">Login Instead</a></p>
                 </form>
             </main>
-            <%- include('../partials/footer') %>
+            <%- include('../../shared/partials/footer') %>
     </body>
 
     </html>

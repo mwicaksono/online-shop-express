@@ -1,11 +1,12 @@
 const path = require('path');
 
 const express = require('express');
-// const csrf = require('csurf');
+const csrf = require('csurf');
 
 const db = require('./data/database');
+const addCsrfToken = require('./middlewares/csrf-token');
+const handleErrors = require('./middlewares/error-handler');
 const authRoutes = require('./routes/auth-routes');
-const productRoutes = require('./routes/product-routes');
 
 const app = express();
 
@@ -15,10 +16,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
-// app.use(csrf());
+app.use(csrf());
+
+app.use(addCsrfToken);
 
 app.use(authRoutes);
-app.use(productRoutes);
+
+app.use(handleErrors);
+
 
 db.connectToDatabase().then(function () {
     app.listen(3000);
