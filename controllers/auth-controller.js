@@ -2,7 +2,11 @@ const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 
 const getSignup = (req, res) => {
-    res.render('auth/signup');
+    res.render('customer/auth/signup');
+}
+
+const getLogin = (req, res) => {
+    res.render('customer/auth/login');
 }
 
 const insertUser = async (req, res) => {
@@ -20,5 +24,7 @@ const insertUser = async (req, res) => {
 }
 
 module.exports = {
-    getSignup, insertUser
+    getSignup,
+    getLogin,
+    insertUser
 }

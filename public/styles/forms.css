@@ -1,0 +1,7 @@
+.btn {
+    background-color: var(--color-gray-500);
+    color: var(--color-primary-200);
+    padding: var(--space-2);
+    border-radius: var(--border-radius-small);
+    font-weight: bold;
+}
