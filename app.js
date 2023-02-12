@@ -22,4 +22,7 @@ app.use(productRoutes);
 
 db.connectToDatabase().then(function () {
     app.listen(3000);
+}).catch(function (error) {
+    console.log('failed to connect to the database');
+    console.log(error);
 })
