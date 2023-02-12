@@ -9,7 +9,7 @@ const getLogin = (req, res) => {
     res.render('customer/auth/login');
 }
 
-const insertUser = async (req, res) => {
+const signup = async (req, res) => {
     const insertData = req.body;
     const name = insertData.name;
     const email = insertData.email;
@@ -26,5 +26,5 @@ const insertUser = async (req, res) => {
 module.exports = {
     getSignup,
     getLogin,
-    insertUser
+    signup
 }
