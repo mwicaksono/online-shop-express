@@ -19,6 +19,13 @@ class User {
         }
     }
 
+    getUserWithSameEmail() {
+        const user = db.getDb().collection('users').findOne({
+            email: this.email
+        });
+        return user;
+    }
+
     async save() {
         const hashedPassword = await bcrypt.hash(this.password, 12);
 
@@ -30,10 +37,6 @@ class User {
             isAdmin: this.isAdmin
         });
         return result;
-    }
-
-    async delete() {
-
     }
 }
 

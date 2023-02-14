@@ -8,6 +8,7 @@
             <main>
                 <h1>Login page</h1>
                 <form action="/login" method="POST">
+                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
                     <p>
                         <label for="email">Email</label>
                         <input type="email" placeholder="enter email here" name="email" id="email" required>

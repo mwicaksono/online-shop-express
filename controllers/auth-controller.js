@@ -26,8 +26,24 @@ const signup = async (req, res) => {
     res.redirect('/login');
 }
 
+const login = async (req, res) => {
+    const loginData = req.body;
+    const user = new User(null,
+        null,
+        loginData.email,
+        null,
+        null,
+        null,
+        null,
+        false)
+    const existingUser = await user.getUserWithSameEmail();
+    console.log(existingUser);
+    res.redirect('/');
+}
+
 module.exports = {
     getSignup,
     getLogin,
-    signup
+    signup,
+    login
 }
