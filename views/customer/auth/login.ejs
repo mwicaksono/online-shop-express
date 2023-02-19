@@ -7,19 +7,28 @@
         <%- include('../../shared/partials/header') %>
             <main>
                 <h1>Login page</h1>
-                <form action="/login" method="POST">
-                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
-                    <p>
-                        <label for="email">Email</label>
-                        <input type="email" placeholder="enter email here" name="email" id="email" required>
-                    </p>
-                    <p>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password" minlength="6" required>
-                    </p>
-                    <button class="btn" type="submit">Login</button>
-                    <p id="switch-form"><a href="/signup">No Account?, Create One Here</a></p>
-                </form>
+                <% if(sessionData.message) { %>
+                    <section class="alert">
+                        <h2>Invalid Email or Password</h2>
+                        <p>
+                            <%= sessionData.message %>
+                        </p>
+                    </section>
+                    <% } %>
+                        <form action="/login" method="POST">
+                            <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                            <p>
+                                <label for="email">Email</label>
+                                <input type="email" placeholder="enter email here" name="email" id="email"
+                                    value="<%= sessionData.email %>" required>
+                            </p>
+                            <p>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" minlength="6" required>
+                            </p>
+                            <button class="btn" type="submit">Login</button>
+                            <p id="switch-form"><a href="/signup">No Account?, Create One Here</a></p>
+                        </form>
             </main>
             <%- include('../../shared/partials/footer') %>
     </body>

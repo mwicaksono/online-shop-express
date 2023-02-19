@@ -13,12 +13,12 @@ const createSessionStore = () => {
 
 const createSessionConfig = () => {
     return {
-        secret: 'top-super-secret',
+        secret: 'supert-secret',
         resave: false,
         saveUnitialized: false,
         store: createSessionStore(),
         cookie: {
-            maxAge: 2 * 24 * 60 * 60 * 3000
+            maxAge: 2 * 24 * 60 * 3000
         }
     }
 }
