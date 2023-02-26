@@ -1,5 +1,5 @@
 const isEmpty = (value) => {
-    return !value && !value.trim() === '';
+    return !value && !value.trim() == '';
 }
 
 const userCredentialsAreValid = (email, password) => {
@@ -25,9 +25,17 @@ const emailIsConfirmed = (email, confirmEmail) => {
     return email === confirmEmail
 }
 
+// Product validations
+const productArevalid = (product, description, price) => {
+    return(
+        product && description && price
+    );
+}
+
 module.exports = {
     userDetailsAreValid,
-    emailIsConfirmed
+    emailIsConfirmed,
+    productArevalid
 }
 
 

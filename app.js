@@ -13,6 +13,7 @@ const checkAuthStatus = require('./middlewares/check-auth');
 const baseRoutes = require('./routes/base-routes');
 const productRoutes = require('./routes/product-routes');
 const authRoutes = require('./routes/auth-routes');
+const adminRoutes = require('./routes/admin-routes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(checkAuthStatus);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
+app.use('/admin', adminRoutes);
 
 app.use(handleErrors);
 

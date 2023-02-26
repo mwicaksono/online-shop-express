@@ -1,0 +1,54 @@
+<%- include('../../shared/partials/head', { title: 'Add New Product' }) %>
+    <link rel="stylesheet" href="/styles/forms.css">
+  
+    </head>
+
+    <body>
+        <%- include('../../shared/partials/header') %>
+            <main>
+                <h1>Add New Product</h1>
+                <% if(sessionData.message) { %>
+                    <section class="alert">
+                        <h2>Invalid Input</h2>
+                        <p>
+                            <%= sessionData.message %>
+                        </p>
+                    </section>
+                    <% } %>
+                <form action="/admin/products/save" method="POST">
+                    <input type="hidden" value="<%= locals.csrfToken %>" name="_csrf">
+                    <p>
+                        <label for="product">Product Name</label>
+                        <input type="text" placeholder="enter the product name" value="<%= sessionData.product %>" name="product" id="product">
+                    </p>
+                    <p>
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="image" required accept="image/png, image/jpg">
+                    </p>
+                    <p>
+                        <label for="summary">Summary</label>
+                        <input type="text" name="summary" id="summary" placeholder="enter summary" maxlength="250" required>
+                    </p>
+                    <p>
+                        <label for="price">Price</label>
+                        <input type="number" placeholder="enter the Price" min="0.01" step="0.01" value="<%= sessionData.price %>" name="price" id="price" required>
+                    </p>
+                    <p>
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" rows="3" placeholder="product description" required><%= sessionData.description %></textarea>
+                    </p>
+                    <hr>
+                    <!-- <p>
+                        <label for="image">Image</label>
+                        <input type="file" name="image" id="image">
+                    </p> -->
+                    <p>
+                        <button class="btn btn-alt" type="reset">Reset</button>
+                        <button class="btn" type="submit">Create Product</button>
+                    </p>
+                </form>
+            </main>
+            <%- include('../../shared/partials/footer') %>
+    </body>
+
+    </html>
